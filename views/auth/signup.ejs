@@ -1,0 +1,51 @@
+<%- include('../partials/header.ejs')%>
+<link rel="stylesheet" href="/css/form.css" />
+  </head>
+  <body>
+    <%- include('../partials/navigation.ejs')%>
+    <!-- start-content -->
+    <section class="sign-up">
+      <div class="container">
+        <h1>انشاء حساب</h1>
+        <% if (errorMessage) { %>
+          <div class="error">
+            <h2><%= errorMessage %></h2>
+        </div>
+        <% } %>
+        <div class="inputs">
+          <form method="POST" action="/signup" enctype="multipart/form-data">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <div class="input">
+              <i class="fa-solid fa-user"></i>
+              <label for="input">الاسم الكامل</label>
+              <input name="name" type="text" placeholder="Full Name" required />
+            </div>
+            <div class="input">
+              <i class="fa-regular fa-envelope"></i>
+              <label for="input">الايميل</label>
+              <input name="email" type="email" placeholder="email" required />
+            </div>
+            <div class="input">
+              <i class="fa-solid fa-lock"></i>
+              <label for="input">كلمة لسر</label>
+              <input name="password" type="password" placeholder="password" required name="same" />
+            </div>
+            <div class="input">
+              <i class="fa-solid fa-lock"></i>
+              <label for="input">اعادة كلمة السر</label>
+              <input name="confirmPassword" type="password" placeholder="password" required name="same" />
+            </div>
+            <div class="input">
+              <i class="fa-regular fa-image"></i>
+              <label for="input">صورتك الشخصية</label>
+              <input name="image" type="file" required />
+            </div>
+            <div><button type="submit">ارسال</button></div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- End-content -->
+    <%- include('../partials/footer.ejs')%>
+  </body>
+</html>

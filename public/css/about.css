@@ -1,0 +1,133 @@
+.info {
+  margin-top: 50px;
+  height: 100vh;
+  direction: rtl;
+  color: var(--maincolor);
+  display: flex;
+  align-items: center;
+}
+.info .container {
+  height: 78%;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  position: relative;
+  padding-bottom: 60px;
+}
+.container::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgb(12, 12, 12);
+  position: absolute;
+  z-index: -1;
+  opacity: 0.5;
+  border-radius: 30px;
+}
+.contact {
+  text-align: center;
+}
+.cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.contact > h1 {
+  display: block;
+  margin-bottom: 7%;
+}
+.flip {
+  width: 30%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: 1s;
+}
+.flip:hover {
+  transform: rotateY(-180deg);
+}
+.flip .photo {
+  width: 100%;
+  padding-bottom: 20px;
+  position: relative;
+  backface-visibility: hidden;
+}
+.photo::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgb(12, 12, 12);
+  position: absolute;
+  z-index: -1;
+  opacity: 0.5;
+  border-radius: 30px;
+}
+.flip .photo img {
+  width: 100%;
+}
+.flip .infor {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.flip .infor h2 {
+  margin-top: 1.5em;
+}
+.flip .infor div {
+  width: 100%;
+  margin-top: 20%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.flip .infor div i {
+  font-size: 3em;
+  color: var(--maincolor);
+}
+.flip .infor div i:hover {
+  color: #37b6a5;
+}
+.infor::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgb(12, 12, 12);
+  position: absolute;
+  z-index: -1;
+  opacity: 0.5;
+  border-radius: 30px;
+}
+.header > h1 span {
+  color: white;
+}
+.header > h1 span span {
+  color: #56ffe8;
+}
+@media (max-width: 767px) {
+  .info .container {
+    height: 50%;
+  }
+  .info {
+    height: 95vh;
+  }
+  .flip span {
+    display: block;
+  }
+}
+@media (max-width: 475px) {
+  .flip {
+    font-size: 7px;
+  }
+  .photo::before {
+    border-radius: 10px;
+  }
+  .infor::before {
+    border-radius: 10px;
+  }
+}

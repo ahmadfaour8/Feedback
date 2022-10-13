@@ -1,0 +1,37 @@
+body{
+    background: url(/images/textured-mulberry-paper.jpg) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.content .container::after{
+    display: none;
+    animation: none;
+}
+.message{
+    width: 100%;
+    background-color: #0000007a;
+    padding: 20px;
+    border-radius: 20px;
+    transition: .7s;
+}
+.message:hover{
+    box-shadow: 2px 2px 20px -9px;
+    transform: scale(1.05, 1.05);
+}
+.tainer{
+    direction: rtl;
+    text-align: start;
+    display: flex;
+}
+.tainer h2{
+    font-size: 2em
+}
+.tainer p{
+    font-size: 1.5em;
+    font-weight: 400;
+}
+.per i{
+    font-size: 2.4em;
+    margin-left: 15px;
+    margin-top: 5px;
+}

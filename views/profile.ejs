@@ -1,0 +1,31 @@
+<%- include('partials/header.ejs')%>
+<link rel="stylesheet" href="/css/profile.css">
+</head>
+  <body>
+    <%- include('partials/navigation.ejs')%>
+<!-- start-content -->
+    <section class="profile">
+        <div class="container">
+            <% if (success) { %>
+                <div class="success">
+                  <h2><%= success %></h2>
+                </div>
+              <% } %>
+            <div class="pro">
+                <div class="photo">
+                    <img src="data:image/png;base64,<%= user.imageUrl %>" alt="profile picture">
+                </div>
+                <h1><%= user.name %></h1>
+                <form method="POST" action="/user/sendMessage">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                    <textarea name="message" cols="30" rows="10" placeholder="اكتب شئ ل Jalal Faour ..." required></textarea>
+                    <input type="hidden" value="<%= user.userId %>" name="userId">
+                    <div><button type="submit">ارسال</button></div>
+                </form>
+            </div>
+        </div>
+    </section>
+<!-- End-content -->
+<%- include('partials/footer.ejs')%>
+</body>
+</html>
