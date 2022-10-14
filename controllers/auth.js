@@ -3,6 +3,15 @@ const { check, validationResult } = require("express-validator");
 
 const User = require("../models/user");
 
+async function isAvailable(username) {
+  const user = User.findOne({ username: username });
+  if (user) {
+    return username;
+  } else {
+    return isAvailable(username + Math.floor(Math.random() * 101));
+  }
+}
+
 exports.getSignup = (req, res, next) => {
   let message = req.flash("error");
   if (message.length > 0) {
@@ -29,56 +38,45 @@ exports.getLogin = (req, res, next) => {
   });
 };
 
-exports.postSignup = (req, res, next) => {
-  const name = req.body.name;
-  const email = req.body.email;
-  const password = req.body.password;
+exports.postSignup = async (req, res, next) => {
+  const { name, email, password } = req.body;
   const image = req.file;
-  const errors = validationResult(req);
   const imageUrl = image.key;
-  let username = name.replace(/\s/g, "-").toLowerCase();
+  const errors = validationResult(req);
+  const username = await isAvailable(name.replace(/\s/g, "-").toLowerCase());
 
-  if (!errors.isEmpty()) {
-    console.log(errors.array());
-    return res.status(422).render("auth/signup", {
-      pageTitle: "signup",
-      errorMessage: errors.array()[0].msg,
-    });
-  }
-
-  if (!image) {
-    return res.status(422).render("auth/signup", {
-      pageTitle: "signup",
-      errorMessage: "Attached file is not an image.",
-    });
-  }
-
-  User.findOne({ username: name.replace(/\s/g, "-").toLowerCase() })
-    .then(result => {
-      if (result) {
-        username = username + Math.floor(Math.random() * 101);
-      }
-    })
-    .then(() => {
-      bcrypt.hash(password, 12).then(hashedPassword => {
-        const user = new User({
-          name: name,
-          username: username,
-          email: email,
-          password: hashedPassword,
-          imageUrl: imageUrl,
-          messages: [],
-        });
-        return user.save().then(result => {
-          res.redirect("/login");
-        });
+  try {
+    if (!errors.isEmpty()) {
+      console.log(errors.array());
+      return res.status(422).render("auth/signup", {
+        pageTitle: "signup",
+        errorMessage: errors.array()[0].msg,
       });
-    })
-    .catch(err => {
-      const error = new Error(err);
-      error.httpStatusCode = 500;
-      return next(error);
+    }
+
+    if (!image) {
+      return res.status(422).render("auth/signup", {
+        pageTitle: "signup",
+        errorMessage: "Attached file is not an image.",
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 12);
+
+    const result = User.create({
+      name,
+      username,
+      email,
+      password: hashedPassword,
+      imageUrl,
     });
+    console.log(result);
+
+    res.redirect("/login");
+  } catch (error) {
+    error.httpStatusCode = 500;
+    return next(error);
+  }
 };
 
 exports.postLogin = (req, res, next) => {

@@ -1,5 +1,5 @@
-const { body } = require("express-validator")
-const User = require("../models/user")
+const { body } = require("express-validator");
+const User = require("../models/user");
 
 exports.signup = [
   body("name")
@@ -12,11 +12,13 @@ exports.signup = [
     .isEmail()
     .withMessage("Please Enter a valid email.")
     .custom((value, { req }) => {
-      return User.findOne({ email: value }).then((user) => {
+      return User.findOne({ email: value }).then(user => {
         if (user) {
-          return Promise.reject("E-Mail exists already, please pick a diffrent one.")
+          return Promise.reject(
+            "E-Mail exists already, please pick a diffrent one."
+          );
         }
-      })
+      });
     })
     .normalizeEmail(),
 
@@ -24,18 +26,18 @@ exports.signup = [
     .trim()
     .isLength({ min: 5, max: 62 })
     .withMessage(
-      "Please Enter a password with at least 5 character and less than 60 charcter long.",
+      "Please Enter a password with at least 5 character and less than 60 charcter long."
     ),
 
   body("confirmPassword")
     .trim()
     .custom((value, { req }) => {
       if (value !== req.body.password) {
-        throw new Error("Passwords have to match!.")
+        throw new Error("Passwords have to match!.");
       }
-      return true
+      return true;
     }),
-]
+];
 
 exports.login = [
   body("email").trim().isEmail().withMessage("Please Enter a valid email."),
@@ -43,6 +45,6 @@ exports.login = [
   body("password")
     .isLength({ min: 5, max: 62 })
     .withMessage(
-      "Please Enter a password with at least 5 character and less than 60 charcter long.",
+      "Please Enter a password with at least 5 character and less than 60 charcter long."
     ),
-]
+];
