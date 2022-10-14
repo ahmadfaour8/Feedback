@@ -43,6 +43,7 @@ exports.postSignup = async (req, res, next) => {
   const image = req.file;
   const imageUrl = image.key;
   const errors = validationResult(req);
+  console.log('this is errors' + errors)
   const username = await isAvailable(name.replace(/\s/g, "-").toLowerCase());
 
   try {
