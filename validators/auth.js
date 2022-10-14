@@ -12,11 +12,9 @@ exports.signup = [
     .isEmail()
     .withMessage("Please Enter a valid email.")
     .custom((value, { req }) => {
-      User.findOne({ email: value }).then(user => {
+      return User.findOne({ email: value }).then(user => {
         if (user) {
-          return Promise.reject(
-            "E-Mail exists already, please pick a diffrent one."
-          );
+          Promise.reject("E-Mail exists already, please pick a diffrent one.");
         }
       });
     })
