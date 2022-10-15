@@ -43,7 +43,7 @@ exports.postSignup = async (req, res, next) => {
   const image = req.file;
   const imageUrl = image.key;
   const errors = validationResult(req);
-  console.log('this is errors' + errors)
+  console.log("this is errors" + errors);
   const username = await isAvailable(name.replace(/\s/g, "-").toLowerCase());
 
   try {
@@ -59,6 +59,15 @@ exports.postSignup = async (req, res, next) => {
       return res.status(422).render("auth/signup", {
         pageTitle: "signup",
         errorMessage: "Attached file is not an image.",
+      });
+    }
+
+    const oldUser = await UserModal.findOne({ email });
+
+    if (oldUser) {
+      return res.status(422).render("auth/signup", {
+        pageTitle: "signup",
+        errorMessage: "Email already exists!.",
       });
     }
 

@@ -11,13 +11,6 @@ exports.signup = [
     .trim()
     .isEmail()
     .withMessage("Please Enter a valid email.")
-    .custom((value, { req }) => {
-      return User.findOne({ email: value }).then(user => {
-        if (user) {
-          Promise.reject("E-Mail exists already, please pick a diffrent one.");
-        }
-      });
-    })
     .normalizeEmail(),
 
   body("password")
