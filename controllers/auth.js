@@ -6,11 +6,11 @@ const User = require("../models/user");
 async function isAvailable(username) {
   try {
     const user = await User.findOne({ username });
-    console.log("user : "+user);
+    console.log("user : " + user);
     if (user) {
-      return username;
-    } else {
       return isAvailable(username + Math.floor(Math.random() * 101));
+    } else {
+      return username;
     }
   } catch (error) {
     console.log(error);
