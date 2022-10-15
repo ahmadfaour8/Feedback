@@ -62,7 +62,7 @@ exports.postSignup = async (req, res, next) => {
       });
     }
 
-    const oldUser = await UserModal.findOne({ email });
+    const oldUser = await User.findOne({ email });
 
     if (oldUser) {
       return res.status(422).render("auth/signup", {
