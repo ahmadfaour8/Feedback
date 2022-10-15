@@ -6,7 +6,6 @@ const User = require("../models/user");
 async function isAvailable(username) {
   try {
     const user = await User.findOne({ username });
-    console.log("user : " + user);
     if (user) {
       return isAvailable(username + Math.floor(Math.random() * 101));
     } else {
@@ -94,43 +93,41 @@ exports.postSignup = async (req, res, next) => {
   }
 };
 
-exports.postLogin = (req, res, next) => {
-  const email = req.body.email;
-  const password = req.body.password;
+exports.postLogin = async (req, res, next) => {
+  const { email, password } = req.body;
   const errors = validationResult(req);
 
-  if (!errors.isEmpty()) {
-    console.log(errors.array());
-    return res.status(422).render("auth/login", {
-      pageTitle: "login",
-      errorMessage: errors.array()[0].msg,
-    });
-  }
-
-  User.findOne({ email: email })
-    .then(user => {
-      if (!user) {
-        req.flash("error", "Invalid email or password");
-        return res.redirect("/login");
-      }
-      bcrypt.compare(password, user.password).then(doMatch => {
-        if (doMatch) {
-          req.session.isLoggedIn = true;
-          req.session.user = user;
-          return req.session.save(err => {
-            console.log(err);
-            res.redirect("/");
-          });
-        }
-        req.flash("error", "Invalid email or password");
-        return res.redirect("/login");
+  try {
+    if (!errors.isEmpty()) {
+      console.log(errors.array());
+      return res.status(422).render("auth/login", {
+        pageTitle: "login",
+        errorMessage: errors.array()[0].msg,
       });
-    })
-    .catch(err => {
-      const error = new Error(err);
-      error.httpStatusCode = 500;
-      return next(error);
-    });
+    }
+
+    const user = await User.findOne({ email: email });
+
+    if (!user) {
+      req.flash("error", "Invalid email or password");
+      return res.redirect("/login");
+    }
+
+    if (bcrypt.compare(password, user.password)) {
+      req.session.isLoggedIn = true;
+      req.session.user = user;
+      return req.session.save(err => {
+        console.log(err);
+        res.redirect("/");
+      });
+    }
+
+
+  } catch (error) {
+    const err = new Error(error);
+    err.httpStatusCode = 500;
+    return next(err);
+  }
 };
 
 exports.postLogout = (req, res, next) => {

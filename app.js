@@ -34,34 +34,8 @@ const errorController = require("./controllers/error");
 
 const s3 = new AWS.S3();
 
-// const fileStorge = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, "images");
-//   },
-//   filename: (req, file, cb) => {
-//     cb(
-//       null,
-//       new Date().toISOString().replace(/:/g, "-") + "-" + file.originalname
-//     );
-//   },
-// });
-
-// const fileFilter = (req, file, cb) => {
-//   if (
-//     file.mimetype === "image/png" ||
-//     file.mimetype === "image/jpg" ||
-//     file.mimetype === "image/jpeg"
-//   ) {
-//     cb(null, true);
-//   } else {
-//     cb(null, false);
-//   }
-// };
-
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(
-//   multer({ storage: fileStorge, fileFilter: fileFilter }).single("image")
-// );
+
 app.use(
   multer({
     storage: multerS3({
@@ -84,12 +58,6 @@ app.use(
   })
 );
 
-// const accessLogStream = fs.createWriteStream(
-//   path.join(__dirname, "access.log"),
-//   { flags: "a" }
-// );
-
-// app.use(morgan("combined", { stream: accessLogStream }));
 app.use(compression());
 app.use(helmet());
 app.use(csrfProtection);
