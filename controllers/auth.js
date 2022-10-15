@@ -6,6 +6,7 @@ const User = require("../models/user");
 async function isAvailable(username) {
   try {
     const user = await User.findOne({ username });
+    console.log("user : "+user);
     if (user) {
       return username;
     } else {
