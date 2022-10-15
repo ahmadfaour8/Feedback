@@ -4,11 +4,15 @@ const { check, validationResult } = require("express-validator");
 const User = require("../models/user");
 
 async function isAvailable(username) {
-  const user = User.findOne({ username: username });
-  if (user) {
-    return username;
-  } else {
-    return isAvailable(username + Math.floor(Math.random() * 101));
+  try {
+    const user = await User.findOne({ username });
+    if (user) {
+      return username;
+    } else {
+      return isAvailable(username + Math.floor(Math.random() * 101));
+    }
+  } catch (error) {
+    console.log(error);
   }
 }
 
