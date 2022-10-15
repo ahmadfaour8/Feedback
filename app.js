@@ -71,9 +71,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/logString', (req, res) => {
-  res.send("kwqmdkmwqkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkwdqqqqqqqqqqqqqqqqqqqqqqqqqqqqiefwwwwwwwwwwwwwwwwwwwoberggggggggggggggggvcmwwwweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeewqjndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndndpewgjiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiimdqweeeeeeeeeeeee")
-})
 
 app.use("/user", userRouter);
 app.use(authRouter);
