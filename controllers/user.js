@@ -74,7 +74,7 @@ exports.sendMessage = (req, res, next) => {
   const { message, userId } = req.body;
 
   try {
-    const user = User.findById(userId);
+    const user = await User.findById(userId);
     Message.create({
       body: message,
       userId: user._id,
