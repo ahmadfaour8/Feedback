@@ -33,7 +33,7 @@ const downloadFile = async filename => {
   }
 };
 
-exports.getUserProfile = (req, res, next) => {
+exports.getUserProfile = async (req, res, next) => {
   let successMessage = req.flash("success");
   if (successMessage.length > 0) {
     successMessage = successMessage[0];
@@ -41,20 +41,18 @@ exports.getUserProfile = (req, res, next) => {
     successMessage = null;
   }
   const username = req.params.username;
-  let user;
 
-  User.findOne({ username: username.toLowerCase() })
-    .then(userDoc => {
-      if (!userDoc) {
-        return res.status(404).render("error/404", {
-          pageTitle: "page not found!",
-        });
-      } else {
-        user = userDoc;
-      }
-    })
-    .then(async () => {
-      const { success, data } = await downloadFile(user.imageUrl);
+  try {
+    const user = await User.findOne({ username: username.toLowerCase() });
+    if (!user) {
+      return res.status(404).render("error/404", {
+        pageTitle: "page not found!",
+      });
+    }
+
+    const { success, data } = await downloadFile(user.imageUrl);
+
+    if (success) {
       return res.render("profile", {
         pageTitle: "profile",
         success: successMessage,
@@ -64,34 +62,32 @@ exports.getUserProfile = (req, res, next) => {
           imageUrl: Buffer.from(data).toString("base64"),
         },
       });
-    })
-    .catch(err => {
-      console.log(err);
-      const error = new Error(err);
-      error.httpStatusCode = 500;
-      return next(error);
-    });
+    }
+  } catch (error) {
+    const err = new Error(error);
+    err.httpStatusCode = 500;
+    return next(err);
+  }
 };
 
 exports.sendMessage = (req, res, next) => {
-  const messageBody = req.body.message;
-  const userId = req.body.userId;
-  console.log(typeof req.useragent);
-  User.findById(userId)
-    .then(user => {
-      const message = new Message({
-        body: messageBody,
-        userId: user._id,
-        userAgent: req.useragent,
-      });
-      message.save().then(result => {
-        req.flash("success", "Message sent successfuly!");
-        return res.redirect(user.username);
-      });
-    })
-    .catch(err => {
-      console.log(err);
+  const { messageBody, userId } = req.body;
+
+  try {
+    const user = User.findById(userId);
+    const message = Message.create({
+      body: messageBody,
+      userId: user._id,
+      userAgent: req.useragent,
     });
+
+    req.flash("success", "Message sent successfuly!");
+    return res.redirect(user.username);
+  } catch (error) {
+    const err = new Error(error);
+    err.httpStatusCode = 500;
+    return next(err);
+  }
 };
 
 exports.getMessages = async (req, res, next) => {
