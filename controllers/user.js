@@ -70,7 +70,7 @@ exports.getUserProfile = async (req, res, next) => {
   }
 };
 
-exports.sendMessage = (req, res, next) => {
+exports.sendMessage = async (req, res, next) => {
   const { message, userId } = req.body;
 
   try {
