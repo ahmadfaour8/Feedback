@@ -71,12 +71,12 @@ exports.getUserProfile = async (req, res, next) => {
 };
 
 exports.sendMessage = (req, res, next) => {
-  const { messageBody, userId } = req.body;
+  const { message, userId } = req.body;
 
   try {
     const user = User.findById(userId);
-    const message = Message.create({
-      body: messageBody,
+    Message.create({
+      body: message,
       userId: user._id,
       userAgent: req.useragent,
     });
