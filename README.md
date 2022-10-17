@@ -1,8 +1,8 @@
 # Feedback
 
 ## Usage
-1- Signup to get your URL
-2- Share it on social media
+1- Signup to get your URL<br/>
+2- Share it on social media<br/>
 3- Get anonymous feedback from you friends and followers
 
 ## Live Demo
