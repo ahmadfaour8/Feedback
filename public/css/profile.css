@@ -100,3 +100,17 @@ button:hover::before{
     transform: skewx(0deg);
     background-color: #31e2cb;
 }
+.success{
+    margin: 0 auto;
+    color: rgb(236, 78, 78);
+    display: flex;
+    justify-content: center;
+    border: 1px solid rgb(248, 125, 125);
+    margin-bottom: 20px;
+    width: 50%;
+    font-size: 10px;
+    direction: ltr;
+}
+.success h2{
+    font-size: 1.7em;
+}
