@@ -7,6 +7,10 @@ body{
     display: none;
     animation: none;
 }
+.content .container .messages{
+    width: 100%;
+    
+}
 .message{
     width: 100%;
     background-color: #0000007a;
@@ -14,14 +18,16 @@ body{
     border-radius: 20px;
     transition: .7s;
 }
+.message:not(:last-child){
+    margin-bottom: 30px;
+}
 .message:hover{
     box-shadow: 2px 2px 20px -9px;
     transform: scale(1.05, 1.05);
 }
 .tainer{
     direction: rtl;
-    text-align: start;
-    display: flex;
+    text-align: center;
 }
 .tainer h2{
     font-size: 2em

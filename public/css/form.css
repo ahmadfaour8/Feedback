@@ -1,227 +1,208 @@
-body {
-  background: url(/images/wooden-floor-with-black-wall-product-background.jpg);
-  background-size: cover;
-  background-position: center;
+body{
+    background: url(/iamges/wooden-floor-with-black-wall-product-background.jpg);
+    background-size: cover;
+    background-position: center;
 }
 /* start-content */
-.sign-up {
-  height: 120vh;
-  display: flex;
-  align-items: center;
-}
-.sign-up .container {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  justify-content: start;
-  color: var(--maincolor);
-  padding: 60px;
-  padding-top: 30px;
-  font-weight: 700;
-  position: relative;
-  direction: rtl;
-}
-.sign-up .container::before {
-  content: "";
-  width: 100%;
-  height: 100%;
-  background-color: rgb(12, 12, 12);
-  position: absolute;
-  z-index: -1;
-  opacity: 0.5;
-  border-radius: 30px;
-}
-.sign-up .container .inputs .input:not(:last-child) {
-  margin-bottom: 30px;
-}
-.sign-up .container .inputs .input:not(:last-child) input {
-  width: 100%;
-  height: 30px;
-  padding: 10px;
-}
-.sign-up .container h1 {
-  text-align: center;
-}
-.sign-up .container .inputs div:last-child {
-  display: flex;
-  justify-content: center;
-}
-.sign-up .container .inputs div:last-child button {
-  background: none;
-  border: none;
-  outline: none;
-  padding: 10px;
-  font-size: 1.3em;
-  position: relative;
-  cursor: pointer;
-  font-weight: 700;
-}
-.sign-up .container .inputs div:last-child button::before {
-  content: "";
-  width: 100px;
-  height: 50px;
-  background-color: var(--maincolor);
-  position: absolute;
-  top: -5px;
-  right: -40%;
-  border-radius: 0 40% 0 40%;
-  transform: skewX(10deg);
-  z-index: -1;
-  transition: 1s;
-}
-.sign-up .container .inputs div:last-child button:hover::before {
-  transform: skewx(0deg);
-  background-color: #31e2cb;
-}
-.sign-up .container .inputs .input input[type="file"] {
-  color: var(--maincolor);
-}
-@media (max-width: 767px) {
-  .sign-up .container .inputs div:last-child button::before {
-    right: -50%;
-  }
-  .sign-up .container .inputs div:last-child button {
-    font-size: 1.5em;
-  }
-}
-@media (min-width: 900px) {
-  .sign-up .container .inputs .input:not(:last-child) {
+.sign-up{
+    height: 120vh;
     display: flex;
-    flex-direction: row;
+    align-items: center;
+}
+.sign-up .container{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-content: start;
+    color: var(--maincolor);
+    padding: 60px;
+    padding-top: 30px;
+    font-weight: 700;
+    position: relative;
+    direction: rtl;
+}
+.sign-up .container::before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgb(12, 12, 12);
+    position: absolute;
+    z-index: -1;
+    opacity: .5;
+    border-radius: 30px;
+}
+.sign-up .container .inputs .input:not(:last-child){
+    margin-bottom: 30px;
+}
+.sign-up .container .inputs .input:not(:last-child) input{
+    width: 100%;
+    height: 30px;
+    padding: 10px;
+}
+.sign-up .container h1{
+    text-align: center;
+}
+.sign-up .container .inputs div:last-child{
+    display: flex;
     justify-content: center;
-  }
-  .sign-up .container .inputs .input:not(:last-child) input {
-    width: 60%;
-  }
-  .input:first-child input:last-child {
-    margin-right: 20px;
-  }
-  .input:nth-child(2) input:last-child {
-    margin-right: 45px;
-  }
-  .input:nth-child(3) input:last-child {
-    margin-right: 35px;
-  }
-  .input:nth-child(5) input:last-child {
-    margin-right: 20px;
-  }
+}
+.sign-up .container .inputs div:last-child button{
+    background: none;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 1.3em;
+    position: relative;
+    cursor: pointer;
+    font-weight: 700;
+}
+.sign-up .container .inputs div:last-child button::before{
+    content: "";
+    width: 100px;
+    height: 50px;
+    background-color: var(--maincolor);
+    position: absolute;
+    top: -5px;
+    right: -40%;
+    border-radius: 0 40% 0 40%;
+    transform: skewX(10deg);
+    z-index: -1;
+    transition: 1s;
+}
+.sign-up .container .inputs div:last-child button:hover::before{
+    transform: skewx(0deg);
+    background-color: #31e2cb;
+}
+.sign-up .container .inputs .input input[type="file"]{
+    color: var(--maincolor);
+}
+@media (max-width:767px){
+    .sign-up .container .inputs div:last-child button::before{
+        right: -50%;
+    }
+    .sign-up .container .inputs div:last-child button{
+        font-size: 1.5em;
+    }
+}
+@media (min-width:900px){
+    .sign-up .container .inputs .input:not(:last-child){
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .sign-up .container .inputs .input:not(:last-child) input{
+        width: 60%;
+    }
+    .input:first-child input:last-child{
+        margin-right: 20px;
+    }
+    .input:nth-child(2) input:last-child{
+        margin-right: 45px;
+    }
+    .input:nth-child(3) input:last-child{
+        margin-right: 35px;
+    }
+    .input:nth-child(5) input:last-child{
+        margin-right: 20px;
+    }
 }
 /* End-content */
-.sign-in {
-  height: 100vh;
-  display: flex;
-  align-items: center;
+.sign-in{
+    height: 100vh;
+    display: flex;
+    align-items: center;
 }
-.sign-in .container {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  justify-content: start;
-  color: var(--maincolor);
-  padding: 60px;
-  padding-top: 30px;
-  font-weight: 700;
-  position: relative;
-  direction: rtl;
-  height: 70%;
+.sign-in .container{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-content: start;
+    color: var(--maincolor);
+    padding: 60px;
+    padding-top: 30px;
+    font-weight: 700;
+    position: relative;
+    direction: rtl;
+    height: 70%;
 }
-.sign-in .container::before {
-  content: "";
-  width: 100%;
-  height: 100%;
-  background-color: rgb(12, 12, 12);
-  position: absolute;
-  z-index: -1;
-  opacity: 0.5;
-  border-radius: 30px;
+.sign-in .container::before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgb(12, 12, 12);
+    position: absolute;
+    z-index: -1;
+    opacity: .5;
+    border-radius: 30px;
 }
-.sign-in .container .inputs .input:not(:last-child) {
-  margin-bottom: 30px;
+.sign-in .container .inputs .input:not(:last-child){
+    margin-bottom: 30px;
 }
-.sign-in .container .inputs .input:not(:last-child) input {
-  width: 100%;
-  height: 30px;
+.sign-in .container .inputs .input:not(:last-child) input{
+    width: 100%;
+    height: 30px;
 }
-.sign-in .container h1 {
-  text-align: center;
+.sign-in .container h1{
+    text-align: center;
 }
-.sign-in .container .inputs div:last-child {
-  display: flex;
-  justify-content: center;
+.sign-in .container .inputs div:last-child{
+    display: flex;
+    justify-content: center;
 }
-.sign-in .container .inputs div:last-child button {
-  background: none;
-  border: none;
-  outline: none;
-  padding: 10px;
-  font-size: 1.3em;
-  position: relative;
-  cursor: pointer;
-  font-weight: 700;
-  margin-top: 40px;
+.sign-in .container .inputs div:last-child button{
+    background: none;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 1.3em;
+    position: relative;
+    cursor: pointer;
+    font-weight: 700;
+    margin-top: 40px;
 }
-.sign-in .container .inputs div:last-child button::before {
-  content: "";
-  width: 100px;
-  height: 50px;
-  background-color: var(--maincolor);
-  position: absolute;
-  top: -5px;
-  right: -40%;
-  border-radius: 0 40% 0 40%;
-  transform: skewX(10deg);
-  z-index: -1;
-  transition: 1s;
+.sign-in .container .inputs div:last-child button::before{
+    content: "";
+    width: 100px;
+    height: 50px;
+    background-color: var(--maincolor);
+    position: absolute;
+    top: -5px;
+    right: -40%;
+    border-radius: 0 40% 0 40%;
+    transform: skewX(10deg);
+    z-index: -1;
+    transition: 1s;
 }
-.sign-in .container .inputs div:last-child button:hover::before {
-  transform: skewx(0deg);
-  background-color: #31e2cb;
+.sign-in .container .inputs div:last-child button:hover::before{
+    transform: skewx(0deg);
+    background-color: #31e2cb;
 }
-.sign-in .container .inputs .input input[type="file"] {
-  color: var(--maincolor);
+.sign-in .container .inputs .input input[type="file"]{
+    color: var(--maincolor);
+}
+@media (max-width:767px){
+    .sign-in .container .inputs div:last-child button::before{
+        right: -50%;
+    }
+    .sign-in .container .inputs div:last-child button{
+        font-size: 1.5em;
+        margin-top: 20px;
+    }
+    .sign-in .container{
+        height: 50%;
+    }
+}
+@media (min-width:900px){
+   .sign-in .input:first-child input:last-child{
+        margin-right: 55px;
+    }
+    .sign-in .container .inputs .input:not(:last-child){
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .sign-in .container .inputs .input:not(:last-child) input{
+        width: 60%;
+    }
 }
 .input i {
-  margin-left: 10px;
-}
-.error {
-  margin: 0 auto;
-  color: rgb(236, 78, 78);
-  display: flex;
-  justify-content: center;
-  border: 1px solid rgb(248, 125, 125);
-  margin-bottom: 20px;
-  width: 50%;
-  font-size: 10px;
-  direction: ltr;
-  padding: 4px;
-}
-.error h2 {
-  font-size: 1.7em;
-}
-@media (max-width: 767px) {
-  .sign-in .container .inputs div:last-child button::before {
-    right: -50%;
-  }
-  .sign-in .container .inputs div:last-child button {
-    font-size: 1.5em;
-    margin-top: 20px;
-  }
-  .sign-in .container {
-    height: 50%;
-  }
-  .eror {
-    width: 100%;
-    font-size: 6px;
-  }
-}
-@media (min-width: 900px) {
-  .sign-in .input:first-child input:last-child {
-    margin-right: 55px;
-  }
-  .sign-in .container .inputs .input:not(:last-child) {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
-  .sign-in .container .inputs .input:not(:last-child) input {
-    width: 60%;
-  }
+    margin-left: 10px;
 }

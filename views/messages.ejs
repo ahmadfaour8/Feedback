@@ -3,40 +3,40 @@
 </head>
 <body>
     <%- include('partials/navigation.ejs')%>
-    <section class="content" >
-        <div class="container" >
+
+    <section class="content">
+        <div class="container">
             <h1>صندوق الرسائل</h1>
-            <% if (messages.length > 0) { %>
-                <% messages.forEach(message => { %>
+            <div class="messages">
+                <% if (messages.length > 0) { %>
+                    <% messages.forEach(message => { %>
+                <div class="message">
+                    <div class="tainer">
+                        <div>
+                            <p><%= message.body %></p>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+        
+                <% } else { %>
                     <div class="message">
-                        <div class="tainer">
-                            <div class="per">
-                                <i class="fa-solid fa-user"></i>
-                            </div>
-                            <div>
-                                <h2>مجهول</h2>
-                                  <p><%= message.body %></p>
+                        <div class="tainer" >
+                            <div class="per" >
+                            <div style="text-align: center;">
+                                <h2>صندوق رسائلك فارغ</h2>
+                                <h2>شارك<a href="/user/<%= user.username %> ">رابط حسابك</a>لتحصل على رسائل من اصدقائك</h2>
                              </div>
                         </div>
                         <hr style="border: 1px solid #7ef7e6; ">
                     </div>
-                    <% }) %>
-        
-            <% } else { %>
-                <div class="message">
-                    <div class="tainer" >
-                        <div class="per" >
-                        <div style="text-align: center;">
-                            <h2>صندوق رسائلك فارغ</h2>
-                            <h2>شارك<a href="/user/<%= user.username %> ">رابط حسابك</a>لتحصل على رسائل من اصدقائك</h2>
-                         </div>
-                    </div>
-                    <hr style="border: 1px solid #7ef7e6; ">
-                </div>
-                <% } %>
-
+                    <% } %>
+    
+            </div>
         </div>
     </section>
+
+
     <%- include('partials/footer.ejs')%>
 </body>
 </html>

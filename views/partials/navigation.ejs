@@ -1,3 +1,35 @@
+        <!-- start-header -->
+        <header class="header">
+          <div class="container">
+              <div class="first-head">
+                  <div class="logo">
+                      <h1>Sara</h1>
+                  </div>
+                  <a href="/"><i class="fa-solid fa-house"></i></a>
+                  <% if (isAuthenticated) { %>
+                    <a href="/user/<%= user.username %>">Profile</a>
+                    <a href="/user/messages">Messages</a>
+                    <% } %>
+              
+                </div>
+              <div class="second-head">
+                  <a href="about.html">حول</a>
+                  <a href="sign-in.html">تسجيل الدخول</a>
+                  <div class="links">
+                      <span class="icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </span>
+                      <ol>
+                        <a href="sign-in.html"><li>تسجيل الدخول</li></a>
+                        <a href="about.html"><li>حول</li></a>
+                      </ol>
+                    </div>
+              </div>
+          </div>
+      </header>
+
 <!-- start-header -->
 <header class="header">
   <div class="container">
